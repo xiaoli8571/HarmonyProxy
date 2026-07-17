@@ -1,23 +1,83 @@
+import { StatusCard } from '../components/StatusCard'
+import { TrafficCard } from '../components/TrafficCard'
+import { BottomTab } from '../components/BottomTab'
+import { appStore } from '../store/AppStore'
+
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
 
-  build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
+
+  build(){
+
+    Column(){
+
+
+      Text("HarmonyProxy")
+
+        .fontSize(30)
+
         .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+
+        .margin({top:40})
+
+
+      StatusCard({
+
+        running:
+        appStore.state.running
+
+      })
+
+
+      TrafficCard({
+
+        upload:
+        appStore.state.uploadSpeed,
+
+        download:
+        appStore.state.downloadSpeed
+
+      })
+
+
+      Button(
+        appStore.state.running
+          ?
+          "停止代理"
+          :
+          "启动代理"
+      )
+
+        .margin({top:30})
+
+        .onClick(()=>{
+
+          if(appStore.state.running){
+
+            appStore.stop()
+
+          }else{
+
+            appStore.start()
+
+          }
+
         })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+
+
+      Blank()
+
+
+      BottomTab()
+
     }
-    .height('100%')
-    .width('100%')
+
+    .width("100%")
+
+    .height("100%")
+
   }
+
 }
