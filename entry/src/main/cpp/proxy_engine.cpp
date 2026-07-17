@@ -1,29 +1,46 @@
 #include "proxy_engine.h"
 
 
-static bool running = false;
+static bool running=false;
 
 
 
 bool startProxy()
 {
+
     running=true;
 
     return true;
+
 }
 
 
 
 bool stopProxy()
 {
+
     running=false;
 
     return true;
+
+}
+
+
+
+bool restartProxy()
+{
+
+    stopProxy();
+
+    return startProxy();
+
 }
 
 
 
 bool getProxyStatus()
 {
+
     return running;
+
 }
