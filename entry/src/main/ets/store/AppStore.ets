@@ -28,13 +28,13 @@ export class AppStore {
 
   static getInstance():AppStore {
 
-    if(!this.instance){
+    if(AppStore.instance === undefined || AppStore.instance === null){
 
-      this.instance=new AppStore()
+      AppStore.instance=new AppStore()
 
     }
 
-    return this.instance
+    return AppStore.instance
 
   }
 
