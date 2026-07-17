@@ -1,31 +1,49 @@
-import {appStore} from '../store/AppStore'
+import NativeProxy from './NativeProxy'
 
 
 export class ProxyService {
 
 
-  start(){
+  private static native?: NativeProxy
 
-    appStore.start()
+
+  static start(){
+
+    if(this.native){
+
+      return this.native.start()
+
+    }
+
+    return false
+
+  }
+
+
+  static stop(){
+
+    if(this.native){
+
+      return this.native.stop()
+
+    }
+
+    return false
 
   }
 
 
-  stop(){
+  static status(){
 
-    appStore.stop()
+    if(this.native){
+
+      return this.native.status()
+
+    }
+
+    return false
 
   }
 
-
-  status(){
-
-    return appStore.state
-
-  }
 
 }
-
-
-export const proxyService =
-  new ProxyService()
