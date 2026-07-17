@@ -6,13 +6,19 @@ project(HarmonyProxy)
 add_library(
     harmonyproxy
     SHARED
+
     napi_bridge.cpp
     proxy_engine.cpp
+
+    libbox/jni/libbox.cpp
 )
 
 
 target_include_directories(
     harmonyproxy
+
     PRIVATE
+
     include
+    libbox/include
 )
