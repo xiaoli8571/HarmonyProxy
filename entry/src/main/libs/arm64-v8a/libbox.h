@@ -83,6 +83,7 @@ extern GoInt BoxStart(char* config);
 extern GoInt BoxStop();
 extern GoInt BoxStatus();
 extern char* BoxVersion();
+extern char* BoxGetLastError();
 
 #ifdef __cplusplus
 }

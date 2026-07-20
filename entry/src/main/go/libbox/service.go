@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"os"
 
 	box "github.com/sagernet/sing-box"
 	"github.com/sagernet/sing-box/include"
@@ -16,6 +18,7 @@ var (
 )
 
 func StartService(config string) error {
+	fmt.Fprintf(os.Stderr, "[Go] StartService: building registry context...\n")
 
 	baseCtx := box.Context(
 		context.Background(),
@@ -24,11 +27,13 @@ func StartService(config string) error {
 		include.EndpointRegistry(),
 	)
 
+	fmt.Fprintf(os.Stderr, "[Go] StartService: parsing config JSON...\n")
 	options, err := json.UnmarshalExtendedContext[option.Options](baseCtx, []byte(config))
 	if err != nil {
-		return err
+		return fmt.Errorf("config parse: %w", err)
 	}
 
+	fmt.Fprintf(os.Stderr, "[Go] StartService: config parsed OK, creating box instance...\n")
 	ctx, cancel = context.WithCancel(baseCtx)
 
 	instance, err = box.New(box.Options{
@@ -37,25 +42,28 @@ func StartService(config string) error {
 	})
 	if err != nil {
 		cancel()
-		cancel = nil
-		ctx = nil
-		return err
+		return fmt.Errorf("box.New: %w", err)
 	}
 
-	return instance.Start()
+	fmt.Fprintf(os.Stderr, "[Go] StartService: box created, starting...\n")
+	err = instance.Start()
+	if err != nil {
+		cancel()
+		return fmt.Errorf("box.Start: %w", err)
+	}
+
+	fmt.Fprintf(os.Stderr, "[Go] StartService: started OK\n")
+	return nil
 }
 
 func StopService() {
-
 	if instance != nil {
 		instance.Close()
 		instance = nil
 	}
-
 	if cancel != nil {
 		cancel()
 		cancel = nil
 	}
-
 	ctx = nil
 }

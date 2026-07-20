@@ -19,6 +19,9 @@ CGO_ENABLED=1 go build \
   -ldflags "-linkmode external -extldflags -static" \
   -o /build/entry/src/main/libs/arm64-v8a/libbox.so
 
+# Copy the generated C header for NAPI usage
+cp /build/entry/src/main/libs/arm64-v8a/libbox.h /build/entry/src/main/cpp/include/libbox.h
+
 ls -lh /build/entry/src/main/libs/arm64-v8a/libbox.so
 
 echo "=== Build complete ==="
