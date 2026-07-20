@@ -1,15 +1,16 @@
-export interface ProxyState {
+@Observed
+export class ProxyState {
 
-  running: boolean
+  running: boolean = false
 
-  connected: boolean
+  connected: boolean = false
 
-  currentNode: string
+  currentNode: string = '未选择'
 
-  uploadSpeed: number
+  uploadSpeed: number = 0
 
-  downloadSpeed: number
+  downloadSpeed: number = 0
 
-  connections: number
+  connections: number = 0
 
 }

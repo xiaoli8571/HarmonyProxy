@@ -1,0 +1,14 @@
+{
+  "log":{
+    "level":"info"
+  },
+
+  "inbounds":[],
+
+  "outbounds":[
+    {
+      "type":"direct",
+      "tag":"direct"
+    }
+  ]
+}

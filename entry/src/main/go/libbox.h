@@ -82,6 +82,7 @@ extern "C" {
 extern GoInt BoxStart(char* config);
 extern GoInt BoxStop();
 extern GoInt BoxStatus();
+extern char* BoxVersion();
 
 #ifdef __cplusplus
 }

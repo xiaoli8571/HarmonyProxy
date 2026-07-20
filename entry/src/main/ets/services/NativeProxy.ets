@@ -1,12 +1,30 @@
-export interface NativeProxy {
+import proxy from 'libentry.so';
 
-  start(): boolean
 
-  stop(): boolean
+export class NativeProxy {
 
-  status(): boolean
+
+  static start(config:string):boolean {
+
+    return proxy.start(config);
+
+  }
+
+
+
+  static stop():boolean {
+
+    return proxy.stop();
+
+  }
+
+
+
+  static status():boolean {
+
+    return proxy.status();
+
+  }
+
 
 }
-
-
-export default NativeProxy

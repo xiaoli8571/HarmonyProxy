@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\xiaoli\\.ohos\\config\\default_HarmonyProxy_232qUnE8J1Cw7Z7IdFs8vLy3mjEsTVzMhPBBczEhVDA=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001A68356C05DD0EFC8B3AA702617F43D89498DE473CF134B08E83E64A37112B6E717880D3BAE0C7",
+          "profile": "C:\\Users\\xiaoli\\.ohos\\config\\default_HarmonyProxy_232qUnE8J1Cw7Z7IdFs8vLy3mjEsTVzMhPBBczEhVDA=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\xiaoli\\.ohos\\config\\default_HarmonyProxy_232qUnE8J1Cw7Z7IdFs8vLy3mjEsTVzMhPBBczEhVDA=.p12",
+          "storePassword": "0000001A6D9A5C822211E259EB895A4416A9D713CE009FF9B49A6CB830B40CB6AE1A9914B66D8F6373F6"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",

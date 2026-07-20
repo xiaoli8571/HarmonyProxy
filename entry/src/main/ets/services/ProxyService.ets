@@ -1,49 +1,18 @@
-import NativeProxy from './NativeProxy'
+import { NativeProxy } from './NativeProxy'
+import { DEFAULT_SINGBOX_CONFIG } from '../common/Constants'
 
 
 export class ProxyService {
 
-
-  private static native?: NativeProxy
-
-
-  static start(){
-
-    if(this.native){
-
-      return this.native.start()
-
-    }
-
-    return false
-
+  static start(config: string = DEFAULT_SINGBOX_CONFIG): boolean {
+    return NativeProxy.start(config)
   }
 
-
-  static stop(){
-
-    if(this.native){
-
-      return this.native.stop()
-
-    }
-
-    return false
-
+  static stop(): boolean {
+    return NativeProxy.stop()
   }
 
-
-  static status(){
-
-    if(this.native){
-
-      return this.native.status()
-
-    }
-
-    return false
-
+  static status(): boolean {
+    return NativeProxy.status()
   }
-
-
 }
