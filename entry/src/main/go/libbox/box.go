@@ -9,9 +9,21 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"runtime/debug"
 	"strconv"
 	"sync"
 )
+
+func init() {
+	// HarmonyOS compatibility: disable async preemption (avoids SIGURG issues)
+	os.Setenv("GODEBUG", "asyncpreemptoff=1")
+
+	// Limit to single CPU to avoid excessive thread creation on constrained system
+	runtime.GOMAXPROCS(1)
+
+	// More aggressive GC for lower memory footprint
+	debug.SetGCPercent(50)
+}
 
 var (
 	running   bool
