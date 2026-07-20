@@ -5,6 +5,8 @@ set -e
 cd /build/entry/src/main/go
 
 echo "=== Resolving Go dependencies ==="
+export GOPROXY=https://goproxy.cn,direct
+export GOFLAGS=-mod=mod
 go mod tidy
 go mod download
 
